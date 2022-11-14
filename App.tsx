@@ -7,12 +7,15 @@ import {
   Text,
   View,
 } from 'react-native';
-import Card from './Card/Card';
+import Card from './Components/Default';
+import EditDiscs from './Components/EditDiscs';
+import Record from './Components/Record';
+import Results from './Components/Results';
+import Suggest from './Components/Suggest';
 
 export type ScreenView = 'DEFAULT' | 'RECORD' | 'EDIT' | 'RESULTS' | 'SUGGEST';
 
 const App = () => {
-  // setView('DEFAULT')
   const [view, setView] = React.useState<ScreenView>('DEFAULT');
   
   if (view === 'DEFAULT') {
@@ -29,17 +32,52 @@ const App = () => {
   }
   
   if (view === 'RECORD') {
-    return <SafeAreaView>
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
-            <Text>hi</Text>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
+    return (
+      <SafeAreaView>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <View>
+            <Record setAppView={setView} />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
   }
 
-  // maddie: implement other screens eventually
-  return <Text>implement other screens</Text>
+  if (view === 'EDIT')  {
+    return (
+      <SafeAreaView>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <View>
+            <EditDiscs setAppView={setView} />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+
+  if (view === 'RESULTS') {
+    return (
+      <SafeAreaView>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <View>
+            <Results setAppView={setView} />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+
+  if (view === 'SUGGEST') {
+    return (
+      <SafeAreaView>
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <View>
+            <Suggest setAppView={setView} />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
   
 };
 

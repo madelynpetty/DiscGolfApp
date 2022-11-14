@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  SafeAreaView,
   Text,
   View,
   StyleSheet,
@@ -9,7 +8,7 @@ import {
 // import ScreenView from '../App';
 
 type Props = {
-  setView: (sv: any) => void; // maddie: fix this type
+  setView: (v: any) => void; // maddie: fix this type
 }
 
 function Card ({setView}: Props) {
@@ -42,13 +41,14 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
+    alignSelf: 'center',
     width: '95%',
-    padding: 10,
+    // padding: 5, // maddie: to make more spacing
   },
   card: {
     flex: 1,
     aspectRatio: 1,
-    borderRadius: 5,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#404040',
