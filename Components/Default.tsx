@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Pressable,
 } from 'react-native';
+import {COLORS} from '../ColorType';
 // import ScreenView from '../App';
 
 type Props = {
@@ -51,13 +52,13 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#404040',
+    backgroundColor: COLORS.LIGHT_GRAY,
     padding: 10,
     margin: 5,
   },
   text: {
     textAlign: 'center',
-    color: '#FFFFFF',
+    color: COLORS.TEXT_WHITE,
     fontWeight: 'bold',
   },
 });

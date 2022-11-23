@@ -17,6 +17,11 @@ export type ScreenView = 'DEFAULT' | 'RECORD' | 'EDIT' | 'RESULTS' | 'SUGGEST';
 
 const App = () => {
   const [view, setView] = React.useState<ScreenView>('DEFAULT');
+
+  React.useEffect(() => {
+    // here to reset view whenever app is opened
+    setView('DEFAULT');
+  }, []);
   
   if (view === 'DEFAULT') {
     return (
