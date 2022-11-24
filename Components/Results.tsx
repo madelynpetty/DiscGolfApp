@@ -5,9 +5,15 @@ import {
   StyleSheet,
   Pressable,
   FlatList,
+  Image
 } from 'react-native';
-import { COLORS } from '../ColorConsts';
+import {COLORS} from '../ColorConsts';
 import Result from './Result';
+
+// if iconify supports react native eventually:
+// import {Icon} from '@iconify/react';
+// import DiscGolfBasketIcon from '@iconify-icons/game-icons/disc-golf-basket';
+// <Icon icon={'@iconify-icons/game-icons/disc-golf-basket'} />
 
 type Props = {
   setAppView: (v: any) => void;
@@ -33,9 +39,11 @@ function Results ({setAppView}: Props) {
   if (resultView === 'empty') {
     return (
       <View>
-        <Pressable onPress={() => setAppView('DEFAULT')}>
-          <Text style={styles.back}>BACK</Text>
-        </Pressable>
+        <View style={styles.backContainer}>
+          <Pressable onPress={() => setAppView('DEFAULT')}>
+            <Image style={styles.back} source={require('../assets/images/back.png')} />
+          </Pressable>
+        </View>
         <Text style={styles.textHeading}>Disc Golf Courses</Text>
         <FlatList
           data={[
@@ -50,9 +58,10 @@ function Results ({setAppView}: Props) {
             {key: courses.harrisvilleCity},
             {key: courses.millsPark},
           ]}
-          renderItem={({item}) => 
-            <Pressable style={styles.rowItem} onPress={() => setResultView(item.key)}>
-              <Text>{item.key}</Text>
+          renderItem={({item, index}) => 
+            <Pressable style={index % 2 == 1 ? styles.row : styles.row2} onPress={() => setResultView(item.key)}>
+              <Image style={styles.image} source={require('../assets/images/basket.png')} />
+              <Text style={styles.text}>{item.key}</Text>
             </Pressable>
           }
         />
@@ -72,29 +81,53 @@ function Results ({setAppView}: Props) {
 }
 
 const styles = StyleSheet.create({
+  backContainer: {
+    paddingLeft: 10,
+  },
   back: {
     fontWeight: 'bold',
     fontSize: 14,
     paddingBottom: 10,
+    width: '3%',
+    height: undefined,
+    aspectRatio: 1,
   },
-  rowItem: {
-    margin: 2,
+  // a much better way to do row and row2 would be cx, just cx(row, row2) and leave 
+  // row2 with background color. I can't get rid of this duplication yet though because
+  // cx is not downloading properly.
+  row: {
     paddingLeft: 15,
-    paddingTop: 10,
-    paddingBottom: 10,
-    borderBottomColor: '#dedede',
-    borderBottomWidth: 1,
+    paddingTop: 12,
+    paddingBottom: 12,
+    // borderTopColor: COLORS.DARK_GRAY,
+    // borderTopWidth: 1,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  row2: {
+    paddingLeft: 15,
+    paddingTop: 12,
+    paddingBottom: 12,
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: COLORS.LIGHTEST_GREEN,
+  },
+  image: {
+    width: '7%',
+    height: undefined,
+    aspectRatio: 1,
   },
   textHeading: {
-    paddingLeft: 10,
+    textAlign: 'center',
     color: COLORS.DARK_GREEN,
     fontWeight: 'bold',
     fontSize: 18,
+    paddingBottom: 15,
   },
   text: {
-    paddingLeft: 5,
-    color: '#FFFFFF',
-    fontWeight: 'bold',
+    paddingLeft: 10,
   },
 });
 
