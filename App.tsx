@@ -2,11 +2,11 @@ import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
-  StatusBar, // maddie: is this the heading thing? Or is it Header?
   StyleSheet,
-  Text,
+  StatusBar,
   View,
 } from 'react-native';
+import { COLORS } from './ColorConsts';
 import Card from './Components/Default';
 import EditDiscs from './Components/EditDiscs';
 import Record from './Components/Record';
@@ -25,10 +25,14 @@ const App = () => {
   
   if (view === 'DEFAULT') {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.topContainer}>
+        <StatusBar
+          backgroundColor={COLORS.LIGHT_GRAY}
+          hidden={false}
+          barStyle='light-content'
+        />
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View>
-              <Text>App.tsx</Text>
+          <View style={styles.bottomContainer}>
               <Card setView={setView} />
           </View>
         </ScrollView>
@@ -38,9 +42,14 @@ const App = () => {
   
   if (view === 'RECORD') {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.topContainer}>
+        <StatusBar
+          backgroundColor={COLORS.LIGHT_GRAY}
+          hidden={false}
+          barStyle='light-content'
+        />
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View>
+          <View style={styles.bottomContainer}>
             <Record setAppView={setView} />
           </View>
         </ScrollView>
@@ -50,9 +59,14 @@ const App = () => {
 
   if (view === 'EDIT')  {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.topContainer}>
+        <StatusBar
+          backgroundColor={COLORS.LIGHT_GRAY}
+          hidden={false}
+          barStyle='light-content'
+        />
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View>
+          <View style={styles.bottomContainer}>
             <EditDiscs setAppView={setView} />
           </View>
         </ScrollView>
@@ -62,9 +76,14 @@ const App = () => {
 
   if (view === 'RESULTS') {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.topContainer}>
+        <StatusBar
+          backgroundColor={COLORS.LIGHT_GRAY}
+          hidden={false}
+          barStyle='light-content'
+        />
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View>
+          <View style={styles.bottomContainer}>
             <Results setAppView={setView} />
           </View>
         </ScrollView>
@@ -74,9 +93,14 @@ const App = () => {
 
   if (view === 'SUGGEST') {
     return (
-      <SafeAreaView>
+      <SafeAreaView style={styles.topContainer}>
+        <StatusBar
+          backgroundColor={COLORS.LIGHT_GRAY}
+          hidden={false}
+          barStyle='light-content'
+        />
         <ScrollView contentInsetAdjustmentBehavior="automatic">
-          <View>
+          <View style={styles.bottomContainer}>
             <Suggest setAppView={setView} />
           </View>
         </ScrollView>
@@ -86,6 +110,14 @@ const App = () => {
   
 };
 
-// const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  topContainer: {
+    backgroundColor: COLORS.LIGHT_GRAY,
+  },
+  bottomContainer: {
+    flex: 1,
+    backgroundColor: COLORS.TEXT_WHITE,
+  }
+});
 
 export default App;

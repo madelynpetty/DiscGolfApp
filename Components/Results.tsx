@@ -5,10 +5,11 @@ import {
   StyleSheet,
   Pressable,
   FlatList,
-  Image
+  Image,
 } from 'react-native';
 import {COLORS} from '../ColorConsts';
 import Result from './Result';
+import {AppBar} from "@react-native-material/core";
 
 // if iconify supports react native eventually:
 // import {Icon} from '@iconify/react';
@@ -39,12 +40,19 @@ function Results ({setAppView}: Props) {
   if (resultView === 'empty') {
     return (
       <View>
-        <View style={styles.backContainer}>
-          <Pressable onPress={() => setAppView('DEFAULT')}>
-            <Image style={styles.back} source={require('../assets/images/back.png')} />
-          </Pressable>
-        </View>
-        <Text style={styles.textHeading}>Disc Golf Courses</Text>
+        <AppBar 
+          style={styles.appBar}
+          title="Disc Golf Courses"
+          centerTitle={true}
+          color={COLORS.LIGHT_GRAY}
+          leading={(
+            <View style={styles.backContainer}>
+              <Pressable onPress={() => setAppView('DEFAULT')}>
+                <Image style={[styles.back, {tintColor: COLORS.TEXT_WHITE}]} source={require('../assets/images/back.png')} />
+              </Pressable>
+            </View>
+          )}
+        />
         <FlatList
           data={[
             {key: courses.davisTech},
@@ -71,9 +79,19 @@ function Results ({setAppView}: Props) {
   else {
     return (
       <>
-        <Pressable onPress={() => setResultView(courses.empty)}>
-            <Text style={styles.back}>BACK</Text>
-          </Pressable>
+        <AppBar 
+          style={styles.appBar}
+          title={resultView}
+          centerTitle={true}
+          color={COLORS.LIGHT_GRAY}
+          leading={(
+            <View style={styles.backContainer}>
+              <Pressable onPress={() => setResultView(courses.empty)}>
+                <Image style={[styles.back, {tintColor: COLORS.TEXT_WHITE}]} source={require('../assets/images/back.png')} />
+              </Pressable>
+            </View>
+          )}
+        />
         <Result course={resultView} />
       </>
     );
@@ -84,11 +102,11 @@ const styles = StyleSheet.create({
   backContainer: {
     paddingLeft: 10,
   },
+  appBar: {
+    paddingBottom: 5,
+  },
   back: {
-    fontWeight: 'bold',
-    fontSize: 14,
-    paddingBottom: 10,
-    width: '3%',
+    width: '20%',
     height: undefined,
     aspectRatio: 1,
   },

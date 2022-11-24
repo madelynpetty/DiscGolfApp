@@ -3,9 +3,10 @@ import {
   Text,
   View,
   StyleSheet,
-  Pressable,
+  Pressable
 } from 'react-native';
 import {COLORS} from '../ColorConsts';
+import {AppBar} from "@react-native-material/core";
 // import ScreenView from '../App';
 
 type Props = {
@@ -15,6 +16,12 @@ type Props = {
 function Card ({setView}: Props) {
   return (
     <>
+      <AppBar 
+          style={styles.appBar}
+          title="Name of App TBD - Disc Golf App?"
+          centerTitle={true}
+          color={COLORS.LIGHT_GRAY}
+        />
       <View style={styles.container}>
         <Pressable style={styles.card} onPress={() => setView('RECORD')}>
           <Text style={styles.text}>RECORD NEW ACTIVITY</Text>
@@ -60,6 +67,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     color: COLORS.TEXT_WHITE,
     fontWeight: 'bold',
+  },
+  appBar: {
+    paddingBottom: 5,
   },
 });
 

@@ -4,9 +4,12 @@ import {
   View,
   StyleSheet,
   Pressable,
+  Image,
   // AsyncStorage
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {AppBar} from "@react-native-material/core";
+import { COLORS } from '../ColorConsts';
 
 type Props = {
   setAppView: (v: any) => void;
@@ -66,19 +69,39 @@ function EditDiscs ({setAppView}: Props) {
   if (error) {
     return (
       <View>
-      <Pressable onPress={() => setAppView('DEFAULT')}>
-        <Text style={styles.heading}>BACK</Text>
-      </Pressable>
-      <Text>{error}</Text>
-    </View>
+        <AppBar 
+          style={styles.appBar}
+          title={'EDIT DISCS'}
+          centerTitle={true}
+          color={COLORS.LIGHT_GRAY}
+          leading={(
+            <View style={styles.backContainer}>
+              <Pressable onPress={() => setAppView('DEFAULT')}>
+                <Image style={[styles.back, {tintColor: COLORS.TEXT_WHITE}]} source={require('../assets/images/back.png')} />
+              </Pressable>
+            </View>
+          )}
+        />
+        <Text>{error}</Text>
+      </View>
     )
   }
 
   return (
     <View>
-      <Pressable onPress={() => setAppView('DEFAULT')}>
-        <Text style={styles.heading}>BACK</Text>
-      </Pressable>
+      <AppBar 
+        style={styles.appBar}
+        title={'EDIT DISCS'}
+        centerTitle={true}
+        color={COLORS.LIGHT_GRAY}
+        leading={(
+          <View style={styles.backContainer}>
+            <Pressable onPress={() => setAppView('DEFAULT')}>
+              <Image style={[styles.back, {tintColor: COLORS.TEXT_WHITE}]} source={require('../assets/images/back.png')} />
+            </Pressable>
+          </View>
+        )}
+      />
       <Pressable onPress={() => storeData('test')}>
         <Text>Add new disc</Text>
       </Pressable>
@@ -90,10 +113,17 @@ function EditDiscs ({setAppView}: Props) {
 }
 
 const styles = StyleSheet.create({
-  heading: {
-    fontWeight: 'bold',
-    fontSize: 14,
-  }
+  backContainer: {
+    paddingLeft: 10,
+  },
+  appBar: {
+    paddingBottom: 5,
+  },
+  back: {
+    width: '20%',
+    height: undefined,
+    aspectRatio: 1,
+  },
 });
 
 export default EditDiscs;
