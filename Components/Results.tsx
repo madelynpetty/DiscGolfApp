@@ -1,15 +1,8 @@
 import React from 'react';
-import {
-  Text,
-  View,
-  StyleSheet,
-  Pressable,
-  FlatList,
-  Image,
-} from 'react-native';
+import {Text, View, StyleSheet, Pressable, FlatList, Image} from 'react-native';
 import {COLORS} from '../ColorConsts';
 import Result from './Result';
-import {AppBar} from "@react-native-material/core";
+import {AppBar} from '@react-native-material/core';
 
 // if iconify supports react native eventually:
 // import {Icon} from '@iconify/react';
@@ -18,7 +11,7 @@ import {AppBar} from "@react-native-material/core";
 
 type Props = {
   setAppView: (v: any) => void;
-}
+};
 
 enum courses {
   empty = 'empty',
@@ -34,26 +27,30 @@ enum courses {
   millsPark = 'Mills Park',
 }
 
-function Results ({setAppView}: Props) {
+function Results({setAppView}: Props) {
   const [resultView, setResultView] = React.useState<courses>(courses.empty);
 
   if (resultView === 'empty') {
     return (
       <View>
-        <AppBar 
+        <AppBar
           style={styles.appBar}
           title="Disc Golf Courses"
           centerTitle={true}
           color={COLORS.LIGHT_GRAY}
-          leading={(
+          leading={
             <View style={styles.backContainer}>
               <Pressable onPress={() => setAppView('DEFAULT')}>
-                <Image style={[styles.back, {tintColor: COLORS.TEXT_WHITE}]} source={require('../assets/images/back.png')} />
+                <Image
+                  style={[styles.back, {tintColor: COLORS.TEXT_WHITE}]}
+                  source={require('../assets/images/back.png')}
+                />
               </Pressable>
             </View>
-          )}
+          }
         />
         <FlatList
+          scrollEnabled={false}
           data={[
             {key: courses.davisTech},
             {key: courses.freedomHills},
@@ -66,31 +63,42 @@ function Results ({setAppView}: Props) {
             {key: courses.harrisvilleCity},
             {key: courses.millsPark},
           ]}
-          renderItem={({item, index}) => 
-            <Pressable style={index % 2 == 1 ? styles.row : styles.row2} onPress={() => setResultView(item.key)}>
-              <Image style={styles.image} source={require('../assets/images/basket.png')} />
+          renderItem={({item, index}) => (
+            <Pressable
+              style={index % 2 == 1 ? styles.row : styles.row2}
+              onPress={() => setResultView(item.key)}>
+              <Image
+                style={styles.basketImage}
+                source={require('../assets/images/basket.png')}
+              />
               <Text style={styles.text}>{item.key}</Text>
+              <Image
+                style={styles.forwardsImage}
+                source={require('../assets/images/forwards.png')}
+              />
             </Pressable>
-          }
+          )}
         />
-      </View>  
+      </View>
     );
-  }
-  else {
+  } else {
     return (
       <>
-        <AppBar 
+        <AppBar
           style={styles.appBar}
           title={resultView}
           centerTitle={true}
           color={COLORS.LIGHT_GRAY}
-          leading={(
+          leading={
             <View style={styles.backContainer}>
               <Pressable onPress={() => setResultView(courses.empty)}>
-                <Image style={[styles.back, {tintColor: COLORS.TEXT_WHITE}]} source={require('../assets/images/back.png')} />
+                <Image
+                  style={[styles.back, {tintColor: COLORS.TEXT_WHITE}]}
+                  source={require('../assets/images/back.png')}
+                />
               </Pressable>
             </View>
-          )}
+          }
         />
         <Result course={resultView} />
       </>
@@ -102,15 +110,15 @@ const styles = StyleSheet.create({
   backContainer: {
     paddingLeft: 10,
   },
-  appBar: {
-    paddingBottom: 5,
-  },
   back: {
     width: '20%',
     height: undefined,
     aspectRatio: 1,
   },
-  // a much better way to do row and row2 would be cx, just cx(row, row2) and leave 
+  appBar: {
+    paddingBottom: 5,
+  },
+  // a much better way to do row and row2 would be cx, just cx(row, row2) and leave
   // row2 with background color. I can't get rid of this duplication yet though because
   // cx is not downloading properly.
   row: {
@@ -132,17 +140,18 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: COLORS.LIGHTEST_GREEN,
   },
-  image: {
+  basketImage: {
     width: '7%',
     height: undefined,
     aspectRatio: 1,
   },
-  textHeading: {
-    textAlign: 'center',
-    color: COLORS.DARK_GREEN,
-    fontWeight: 'bold',
-    fontSize: 18,
-    paddingBottom: 15,
+  forwardsImage: {
+    position: 'absolute',
+    right: 0,
+    marginRight: 10,
+    width: '3%',
+    height: undefined,
+    aspectRatio: 1,
   },
   text: {
     paddingLeft: 10,
