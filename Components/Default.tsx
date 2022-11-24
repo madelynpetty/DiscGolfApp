@@ -5,7 +5,7 @@ import {
   StyleSheet,
   Pressable,
 } from 'react-native';
-import {COLORS} from '../ColorType';
+import {COLORS} from '../ColorConsts';
 // import ScreenView from '../App';
 
 type Props = {

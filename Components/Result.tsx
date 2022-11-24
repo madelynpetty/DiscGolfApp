@@ -6,16 +6,19 @@ import {
   StyleSheet,
   Pressable,
 } from 'react-native';
+import { COLORS } from '../ColorConsts';
 
 type Props = {
+  course: string;
 }
 
-function Result ({}: Props) {
+function Result ({course}: Props) {
   return (
     <View>
       <Pressable style={styles.card}>
-        <Text style={styles.textHeading}>DAVIS APPLIED TECHNOLOGY COLLEGE COURSE</Text>
+        <Text style={styles.textHeading}>{course}</Text>
       </Pressable>
+      {/* eventually this will have data from the asyncStorage */}
       <Text style={styles.text}>400 hits</Text>
     </View>
   );
@@ -27,20 +30,16 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   card: {
-    borderRadius: 20,
     justifyContent: 'center',
-    padding: 20,
-    margin: 5,
   },
   textHeading: {
-    paddingLeft: 5,
-    color: '#404040',
+    paddingLeft: 10,
+    color: COLORS.DARK_GREEN,
     fontWeight: 'bold',
     fontSize: 18,
-    alignItems: 'center',
   },
   text: {
-    // intentionally left blank (for now)
+    paddingLeft: 10,
   }
 });
 
