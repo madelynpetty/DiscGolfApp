@@ -5,15 +5,17 @@ import {
   StyleSheet,
   StatusBar,
   View,
+  Text,
+  Pressable,
 } from 'react-native';
 import { COLORS } from './ColorConsts';
-import Card from './Components/Default';
+import Default from './Components/Default';
 import EditDiscs from './Components/EditDiscs';
 import Record from './Components/Record';
 import Results from './Components/Results';
 import Suggest from './Components/Suggest';
 
-export type ScreenView = 'DEFAULT' | 'RECORD' | 'EDIT' | 'RESULTS' | 'SUGGEST';
+export type ScreenView = 'DEFAULT' | 'RECORD' | 'EDIT' | 'RESULTS' | 'SUGGEST' | 'TBD';
 
 const App = () => {
   const [view, setView] = React.useState<ScreenView>('DEFAULT');
@@ -33,7 +35,7 @@ const App = () => {
         />
         <ScrollView contentInsetAdjustmentBehavior="automatic">
           <View style={styles.bottomContainer}>
-              <Card setView={setView} />
+              <Default setView={setView} />
           </View>
         </ScrollView>
       </SafeAreaView>
@@ -106,6 +108,26 @@ const App = () => {
         </ScrollView>
       </SafeAreaView>
     );
+  }
+
+  if (view === 'TBD') {
+    return (
+      <SafeAreaView style={styles.topContainer}>
+        <StatusBar
+          backgroundColor={COLORS.LIGHT_GRAY}
+          hidden={false}
+          barStyle='light-content'
+        />
+        <ScrollView contentInsetAdjustmentBehavior="automatic">
+          <View style={styles.bottomContainer}>
+            <Pressable onPress={() => setView('DEFAULT')}>
+              <Text>Back</Text>
+            </Pressable>
+            <Text>Not implemented</Text>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    )
   }
   
 };
