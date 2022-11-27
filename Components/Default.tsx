@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, Pressable, Image} from 'react-native';
-import {COLORS} from '../ColorConsts';
+import {COLORS} from '../Constants';
 import {AppBar} from '@react-native-material/core';
 // import ScreenView from '../App';
 
@@ -19,7 +19,7 @@ function Default({setView}: Props) {
       />
 
       <View style={styles.container}>
-        <Pressable style={[styles.card, {backgroundColor: COLORS.DARK_GREEN}]} onPress={() => setView('RECORD')}>
+        <Pressable style={[styles.card, {backgroundColor: COLORS.TEXT_WHITE}]} onPress={() => setView('RECORD')}>
           <Text style={styles.text}>Record new activity</Text>
           <Image
             style={[styles.image, styles.recordImage, {tintColor: COLORS.GREEN}]}
@@ -43,7 +43,7 @@ function Default({setView}: Props) {
             source={require('../assets/images/basket.png')}
           />
         </Pressable>
-        <Pressable style={[styles.card, {backgroundColor: COLORS.DARK_GREEN}]} onPress={() => setView('SUGGEST')}>
+        <Pressable style={[styles.card, {backgroundColor: COLORS.TEXT_WHITE}]} onPress={() => setView('SUGGEST')}>
           <Text style={styles.text}>Suggest new course</Text>
           <Image
             style={[styles.image, styles.cartImage, {tintColor: COLORS.GREEN}]}
@@ -74,7 +74,6 @@ function Default({setView}: Props) {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
   },
   card: {
@@ -84,7 +83,7 @@ const styles = StyleSheet.create({
     paddingLeft: 5,
   },
   text: {
-    color: COLORS.TEXT_WHITE,
+    color: COLORS.DARK_GREEN,
     fontSize: 16,
     margin: 5,
   },

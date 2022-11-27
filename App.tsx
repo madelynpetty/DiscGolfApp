@@ -8,7 +8,7 @@ import {
   Text,
   Pressable,
 } from 'react-native';
-import { COLORS } from './ColorConsts';
+import { COLORS } from './Constants';
 import Default from './Components/Default';
 import EditDiscs from './Components/EditDiscs';
 import Record from './Components/Record';

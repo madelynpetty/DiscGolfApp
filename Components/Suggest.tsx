@@ -6,7 +6,7 @@ import {
   Pressable,
   Image,
 } from 'react-native';
-import { COLORS } from '../ColorConsts';
+import { COLORS } from '../Constants';
 import {AppBar} from "@react-native-material/core";
 
 type Props = {

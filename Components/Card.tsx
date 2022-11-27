@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, Pressable} from 'react-native';
-import {COLORS} from '../ColorConsts';
+import {COLORS} from '../Constants';
 // import ScreenView from '../App';
 
 type Props = {

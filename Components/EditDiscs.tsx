@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {AppBar} from "@react-native-material/core";
-import { COLORS } from '../ColorConsts';
+import { COLORS } from '../Constants';
 
 type Props = {
   setAppView: (v: any) => void;

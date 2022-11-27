@@ -1,6 +1,6 @@
 import React from 'react';
 import {Text, View, StyleSheet, Pressable, FlatList, Image} from 'react-native';
-import {COLORS} from '../ColorConsts';
+import {COLORS} from '../Constants';
 import Result from './Result';
 import {AppBar} from '@react-native-material/core';
 
@@ -13,7 +13,7 @@ type Props = {
   setAppView: (v: any) => void;
 };
 
-enum courses {
+enum courseNames {
   empty = 'empty',
   davisTech = 'Davis Tech',
   freedomHills = 'Freedom Hills',
@@ -28,7 +28,7 @@ enum courses {
 }
 
 function Results({setAppView}: Props) {
-  const [resultView, setResultView] = React.useState<courses>(courses.empty);
+  const [resultView, setResultView] = React.useState<courseNames>(courseNames.empty);
 
   if (resultView === 'empty') {
     return (
@@ -52,20 +52,20 @@ function Results({setAppView}: Props) {
         <FlatList
           scrollEnabled={false}
           data={[
-            {key: courses.davisTech},
-            {key: courses.freedomHills},
-            {key: courses.weberStateUniversity},
-            {key: courses.utahStateHospital},
-            {key: courses.slateCanyon},
-            {key: courses.bicentennial},
-            {key: courses.universityOfUtah},
-            {key: courses.utahValleyUniversity},
-            {key: courses.harrisvilleCity},
-            {key: courses.millsPark},
+            {key: courseNames.davisTech},
+            {key: courseNames.freedomHills},
+            {key: courseNames.weberStateUniversity},
+            {key: courseNames.utahStateHospital},
+            {key: courseNames.slateCanyon},
+            {key: courseNames.bicentennial},
+            {key: courseNames.universityOfUtah},
+            {key: courseNames.utahValleyUniversity},
+            {key: courseNames.harrisvilleCity},
+            {key: courseNames.millsPark},
           ]}
           renderItem={({item, index}) => (
             <Pressable
-              style={index % 2 == 1 ? styles.row : styles.row2}
+              style={index % 2 == 1 ? styles.row : [styles.row, styles.row2]}
               onPress={() => setResultView(item.key)}>
               <Image
                 style={styles.basketImage}
@@ -91,7 +91,7 @@ function Results({setAppView}: Props) {
           color={COLORS.LIGHT_GRAY}
           leading={
             <View style={styles.backContainer}>
-              <Pressable onPress={() => setResultView(courses.empty)}>
+              <Pressable onPress={() => setResultView(courseNames.empty)}>
                 <Image
                   style={[styles.back, {tintColor: COLORS.TEXT_WHITE}]}
                   source={require('../assets/images/back.png')}
@@ -118,9 +118,6 @@ const styles = StyleSheet.create({
   appBar: {
     paddingBottom: 5,
   },
-  // a much better way to do row and row2 would be cx, just cx(row, row2) and leave
-  // row2 with background color. I can't get rid of this duplication yet though because
-  // cx is not downloading properly.
   row: {
     paddingLeft: 15,
     paddingTop: 12,
@@ -132,12 +129,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   row2: {
-    paddingLeft: 15,
-    paddingTop: 12,
-    paddingBottom: 12,
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
     backgroundColor: COLORS.LIGHTEST_GREEN,
   },
   basketImage: {
