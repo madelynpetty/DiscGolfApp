@@ -64,7 +64,18 @@ function EditDiscs({setAppView}: Props) {
   const DriverScreen = () => {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>driver</Text>
+        <View style={styles.container}>
+          <Image style={styles.card} source={require('../assets/images/discs/driver1.png')} />
+          <Image style={styles.card} source={require('../assets/images/discs/driver2.png')} />
+        </View>
+        <View style={styles.container}>
+          <Image style={styles.card} source={require('../assets/images/discs/driver3.png')} />
+          <Image style={[styles.card, {tintColor: COLORS.TEXT_WHITE}]} source={require('../assets/images/discs/driver2.png')} />
+        </View>
+        <View style={styles.addNewDiscButton}>
+          <Text style={styles.addNewDiscText}>Add new driver</Text>
+        </View>
+
         {/* <Pressable onPress={() => storeData('test')}>
           <Text>Add new Driver</Text>
         </Pressable> */}
@@ -75,7 +86,13 @@ function EditDiscs({setAppView}: Props) {
   const MidrangeScreen = () => {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>midrange</Text>
+        <View style={styles.container}>
+          <Image style={styles.card} source={require('../assets/images/discs/midrange1.png')} />
+          <Image style={styles.card} source={require('../assets/images/discs/midrange2.png')} />
+        </View>
+        <View style={styles.addNewDiscButton}>
+          <Text style={styles.addNewDiscText}>Add new midrange</Text>
+        </View>     
       </View>
     );
   };
@@ -83,14 +100,20 @@ function EditDiscs({setAppView}: Props) {
   const PutterScreen = () => {
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text>putter</Text>
+        <View style={styles.container}>
+          <Image style={styles.card} source={require('../assets/images/discs/putter1.png')} />
+          <Image style={styles.card} source={require('../assets/images/discs/putter2.png')} />
+        </View>
+        <View style={styles.addNewDiscButton}>
+          <Text style={styles.addNewDiscText}>Add new putter</Text>
+        </View>
       </View>
     );
   };
 
   const Discs = () => {
     return (
-      <View style={styles.header}>
+      <View style={view === 'DRIVER' ? styles.header : styles.header2}>
         <Pressable style={view === 'DRIVER' ? [styles.thirdScreen, styles.activeTab] : styles.thirdScreen} onPress={() => setView('DRIVER')}>
           <Text style={styles.headerText}>Driver</Text>
         </Pressable>
@@ -150,9 +173,9 @@ function EditDiscs({setAppView}: Props) {
       {view === 'DRIVER' && <DriverScreen />}
       {view === 'MIDRANGE' && <MidrangeScreen />}
       {view === 'PUTTER' && <PutterScreen />}
-      <Pressable onPress={() => getData()}>
+      {/* <Pressable onPress={() => getData()}>
         <Text>test storage</Text>
-      </Pressable>
+      </Pressable> */}
     </View>
   );
 }
@@ -172,7 +195,13 @@ const styles = StyleSheet.create({
   header: {
     paddingTop: 10,
     flexDirection: 'row',
-    height: '30%',
+    height: '8%',
+    backgroundColor: COLORS.DARK_GRAY,
+  },
+  header2: {
+    paddingTop: 10,
+    flexDirection: 'row',
+    height: '13%',
     backgroundColor: COLORS.DARK_GRAY,
   },
   thirdScreen: {
@@ -186,6 +215,27 @@ const styles = StyleSheet.create({
   activeTab: {
     borderBottomColor: COLORS.GREEN,
     borderBottomWidth: 3,
+  },
+  container: {
+    flexDirection: 'row',
+  },
+  card: {
+    flex: 1,
+    aspectRatio: 1,
+    margin: 10,
+  },
+  card2: {
+    flex: 1,
+    aspectRatio: 1,
+  },
+  addNewDiscButton: {
+    margin: 10,
+    padding: 10,
+    backgroundColor: COLORS.GREEN,
+    borderRadius: 5,
+  },
+  addNewDiscText: {
+    color: COLORS.TEXT_WHITE,
   }
 });
 
