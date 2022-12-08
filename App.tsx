@@ -14,6 +14,9 @@ import EditDiscs from './Components/EditDiscs';
 import Record from './Components/Record';
 import Results from './Components/Results';
 import Suggest from './Components/Suggest';
+import { LogBox } from 'react-native';
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notifications
 
 export type ScreenView = 'DEFAULT' | 'RECORD' | 'EDIT' | 'RESULTS' | 'SUGGEST' | 'TBD';
 
