@@ -1,13 +1,13 @@
-export const LIGHT_GRAY = '#474747';
-export const DARK_GRAY = '#EEEEEE';
+const LIGHT_GRAY = '#474747';
+const DARK_GRAY = '#EEEEEE';
 
-export const LIGHTEST_GREEN = '#d6ffd7';
-export const LIGHT_GREEN = '#65e069';
-export const GREEN = '#48bf53';
-export const DARK_GREEN = '#161a16';
+const LIGHTEST_GREEN = '#d6ffd7';
+const LIGHT_GREEN = '#65e069';
+const GREEN = '#48bf53';
+const DARK_GREEN = '#161a16';
 
-export const TEXT_GRAY = '#C8C8C8';
-export const TEXT_WHITE = '#FFFFFF';
+const TEXT_GRAY = '#C8C8C8';
+const TEXT_WHITE = '#FFFFFF';
 
 export const COLORS = {
   LIGHT_GRAY,
